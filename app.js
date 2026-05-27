@@ -6,6 +6,11 @@ const express = require('express')
 
 //database
 const connectDB = require('./db/connect')
+
+
+//authRouter 
+const authRoute = require('./routes/authRoute')
+
 // middlewares
 const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
@@ -19,6 +24,8 @@ app.use(express.json())
 app.use('/', (req, res)=>{
     res.send('e-commerce api')
 })
+
+app.use('/api/v1/auth', authRoute)
 
 const port = process.env.PORT || 5000
 const start = async ()=>{
