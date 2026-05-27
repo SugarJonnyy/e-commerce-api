@@ -9,9 +9,11 @@ const connectDB = require('./db/connect')
 // middlewares
 const notFoundMiddleware = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
+const morgan = require('morgan')
 
 const app = express()
 
+app.use(morgan('tiny'))
 app.use(express.json())
 
 app.use('/', (req, res)=>{
