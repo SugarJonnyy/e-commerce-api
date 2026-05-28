@@ -21,11 +21,15 @@ const app = express()
 app.use(morgan('tiny'))
 app.use(express.json())
 
+
+app.use('/api/v1/auth', authRoute)
+
 app.use('/', (req, res)=>{
     res.send('e-commerce api')
 })
 
-app.use('/api/v1/auth', authRoute)
+app.use(notFoundMiddleware)
+app.use(errorHandlerMiddleware)
 
 const port = process.env.PORT || 5000
 const start = async ()=>{
